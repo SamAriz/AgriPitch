@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { Tractor, ShoppingBag } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import logo from 'figma:asset/46bb90f371e453e6f102bc4fe02a6b20d555d902.png';
+import logo from '../../assets/46bb90f371e453e6f102bc4fe02a6b20d555d902.png';
 
 export function RoleSelection() {
   const navigate = useNavigate();

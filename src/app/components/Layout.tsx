@@ -18,7 +18,7 @@ import {
   Sprout
 } from 'lucide-react';
 import { useState } from 'react';
-import logo from 'figma:asset/46bb90f371e453e6f102bc4fe02a6b20d555d902.png';
+import logo from '../../assets/46bb90f371e453e6f102bc4fe02a6b20d555d902.png';
 
 function LayoutContent() {
   const { user, unreadMessages, notifications, isDarkMode, toggleDarkMode } = useApp();
