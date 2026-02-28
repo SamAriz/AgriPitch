@@ -1,11 +1,8 @@
 
-  # Farmers Marketplace Web App
+  # Philagri
 
-  This is a code bundle for Farmers Marketplace Web App. The original project is available at https://www.figma.com/design/WtFvWSj4Bfs5JixnBUswSh/Farmers-Marketplace-Web-App.
+  This is a pitch project for our shcool.
 
-  ## Running the code
-
-  Run `npm i` to install the dependencies.
-
-  Run `npm run dev` to start the development server.
+  Note: This is in beta version because it will be used for 
+  our pich, some changes might be seen later.
   
