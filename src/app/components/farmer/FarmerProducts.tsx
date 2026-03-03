@@ -157,7 +157,7 @@ export function FarmerProducts() {
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                       <p className="text-xs text-emerald-600">Price</p>
-                      <p className="font-bold text-emerald-900">${product.price}/{product.unit}</p>
+                      <p className="font-bold text-emerald-900">₱{product.price}/{product.unit}</p>
                     </div>
                     <div>
                       <p className="text-xs text-emerald-600">Available</p>
