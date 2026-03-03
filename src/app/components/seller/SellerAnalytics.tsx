@@ -32,19 +32,19 @@ export function SellerAnalytics() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Sales Analytics</h1>
-        <p className="text-sm text-[var(--text-muted)] mt-0.5">Insights into your business performance</p>
+        <h1 className="text-3xl font-bold text-emerald-900">Sales Analytics</h1>
+        <p className="text-emerald-600 mt-1">Insights into your business performance</p>
       </div>
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Total Sales</CardTitle>
+            <CardTitle className="text-sm font-medium text-emerald-700">Total Sales</CardTitle>
             <DollarSign className="w-4 h-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">₱35,980</div>
+            <div className="text-2xl font-bold text-emerald-900">$35,980</div>
             <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
               +25% from last period
@@ -52,13 +52,13 @@ export function SellerAnalytics() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Total Orders</CardTitle>
+            <CardTitle className="text-sm font-medium text-emerald-700">Total Orders</CardTitle>
             <ShoppingCart className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">395</div>
+            <div className="text-2xl font-bold text-emerald-900">395</div>
             <p className="text-xs text-blue-600 mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
               +12% from last period
@@ -66,13 +66,13 @@ export function SellerAnalytics() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Avg. Order Value</CardTitle>
+            <CardTitle className="text-sm font-medium text-emerald-700">Avg. Order Value</CardTitle>
             <DollarSign className="w-4 h-4 text-purple-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">₱91.09</div>
+            <div className="text-2xl font-bold text-emerald-900">$91.09</div>
             <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
               +8% from last period
@@ -80,13 +80,13 @@ export function SellerAnalytics() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Customer Retention</CardTitle>
+            <CardTitle className="text-sm font-medium text-emerald-700">Customer Retention</CardTitle>
             <Users className="w-4 h-4 text-amber-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">78%</div>
+            <div className="text-2xl font-bold text-emerald-900">78%</div>
             <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
               <TrendingDown className="w-3 h-3" />
               -3% from last period
@@ -96,9 +96,9 @@ export function SellerAnalytics() {
       </div>
 
       {/* Revenue Chart */}
-      <Card className="bg-[var(--card)] border-[var(--border-color)]">
+      <Card className="bg-white border-emerald-200">
         <CardHeader>
-          <CardTitle className="text-[var(--text-primary)]">Revenue & Orders Trend</CardTitle>
+          <CardTitle className="text-emerald-900">Revenue & Orders Trend</CardTitle>
           <CardDescription>Monthly performance over the last 6 months</CardDescription>
         </CardHeader>
         <CardContent>
@@ -118,7 +118,7 @@ export function SellerAnalytics() {
                 dataKey="revenue" 
                 stroke="#10b981" 
                 strokeWidth={3}
-                name="Revenue (₱)"
+                name="Revenue ($)"
                 dot={{ fill: '#10b981', r: 5 }}
               />
               <Line 
@@ -137,9 +137,9 @@ export function SellerAnalytics() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top Products */}
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardHeader>
-            <CardTitle className="text-[var(--text-primary)]">Top Selling Products</CardTitle>
+            <CardTitle className="text-emerald-900">Top Selling Products</CardTitle>
             <CardDescription>Best performers by revenue</CardDescription>
           </CardHeader>
           <CardContent>
@@ -150,7 +150,7 @@ export function SellerAnalytics() {
                 <YAxis dataKey="name" type="category" stroke="#059669" width={100} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#fff', border: '1px solid #10b981' }}
-                  formatter={(value) => `₱${value}`}
+                  formatter={(value) => `$${value}`}
                 />
                 <Bar dataKey="revenue" fill="#10b981" radius={[0, 8, 8, 0]} />
               </BarChart>
@@ -159,9 +159,9 @@ export function SellerAnalytics() {
         </Card>
 
         {/* Sales by Category */}
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardHeader>
-            <CardTitle className="text-[var(--text-primary)]">Sales by Category</CardTitle>
+            <CardTitle className="text-emerald-900">Sales by Category</CardTitle>
             <CardDescription>Revenue distribution across categories</CardDescription>
           </CardHeader>
           <CardContent className="flex items-center justify-center">
@@ -189,9 +189,9 @@ export function SellerAnalytics() {
       </div>
 
       {/* Customer Demographics */}
-      <Card className="bg-[var(--card)] border-[var(--border-color)]">
+      <Card className="bg-white border-emerald-200">
         <CardHeader>
-          <CardTitle className="text-[var(--text-primary)]">Customer Demographics</CardTitle>
+          <CardTitle className="text-emerald-900">Customer Demographics</CardTitle>
           <CardDescription>Customer distribution by location</CardDescription>
         </CardHeader>
         <CardContent>
@@ -210,9 +210,9 @@ export function SellerAnalytics() {
       </Card>
 
       {/* Product Performance Table */}
-      <Card className="bg-[var(--card)] border-[var(--border-color)]">
+      <Card className="bg-white border-emerald-200">
         <CardHeader>
-          <CardTitle className="text-[var(--text-primary)]">Product Performance</CardTitle>
+          <CardTitle className="text-emerald-900">Product Performance</CardTitle>
           <CardDescription>Detailed breakdown of your products</CardDescription>
         </CardHeader>
         <CardContent>
@@ -220,16 +220,16 @@ export function SellerAnalytics() {
             {topProducts.map((product, index) => (
               <div key={product.name} className="flex items-center justify-between p-4 bg-emerald-50 rounded-lg">
                 <div className="flex items-center gap-4 flex-1">
-                  <div className="flex items-center justify-center w-8 h-8 bg-emerald-200 rounded-full font-bold text-[var(--text-primary)]">
+                  <div className="flex items-center justify-center w-8 h-8 bg-emerald-200 rounded-full font-bold text-emerald-900">
                     {index + 1}
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-medium text-[var(--text-primary)]">{product.name}</h4>
-                    <p className="text-sm text-[var(--text-muted)]">{product.sales} units sold</p>
+                    <h4 className="font-medium text-emerald-900">{product.name}</h4>
+                    <p className="text-sm text-emerald-600">{product.sales} units sold</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-[var(--text-primary)]">₱{product.revenue.toLocaleString()}</p>
+                  <p className="font-bold text-emerald-900">${product.revenue.toLocaleString()}</p>
                   <Badge variant="outline" className="border-green-300 text-green-700 mt-1">
                     <TrendingUp className="w-3 h-3 mr-1" />
                     High Performer

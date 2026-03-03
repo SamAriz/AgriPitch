@@ -31,11 +31,11 @@ export function BuyerOrders() {
   };
 
   const OrderCard = ({ order }: { order: typeof myOrders[0] }) => (
-    <Card className="bg-[var(--card)] border-[var(--border-color)]">
+    <Card className="bg-white border-emerald-200">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
-            <CardTitle className="text-[var(--text-primary)]">Order #{order.id}</CardTitle>
+            <CardTitle className="text-emerald-900">Order #{order.id}</CardTitle>
             <CardDescription className="mt-1">
               Placed on {order.orderDate}
             </CardDescription>
@@ -53,32 +53,32 @@ export function BuyerOrders() {
         {/* Order Progress */}
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-[var(--text-muted)]">Order Progress</span>
-            <span className="font-medium text-[var(--text-primary)]">{getStatusProgress(order.status)}%</span>
+            <span className="text-emerald-600">Order Progress</span>
+            <span className="font-medium text-emerald-900">{getStatusProgress(order.status)}%</span>
           </div>
           <Progress value={getStatusProgress(order.status)} className="h-2" />
-          <div className="flex justify-between text-xs text-[var(--text-muted)] mt-2">
-            <span className={order.status === 'pending' ? 'font-medium text-[var(--text-primary)]' : ''}>Pending</span>
-            <span className={order.status === 'confirmed' ? 'font-medium text-[var(--text-primary)]' : ''}>Confirmed</span>
-            <span className={order.status === 'shipped' ? 'font-medium text-[var(--text-primary)]' : ''}>Shipped</span>
-            <span className={order.status === 'delivered' ? 'font-medium text-[var(--text-primary)]' : ''}>Delivered</span>
+          <div className="flex justify-between text-xs text-emerald-600 mt-2">
+            <span className={order.status === 'pending' ? 'font-medium text-emerald-900' : ''}>Pending</span>
+            <span className={order.status === 'confirmed' ? 'font-medium text-emerald-900' : ''}>Confirmed</span>
+            <span className={order.status === 'shipped' ? 'font-medium text-emerald-900' : ''}>Shipped</span>
+            <span className={order.status === 'delivered' ? 'font-medium text-emerald-900' : ''}>Delivered</span>
           </div>
         </div>
 
         {/* Product Info */}
         <div className="p-4 bg-emerald-50 rounded-lg">
           <div className="flex items-center justify-between mb-3">
-            <h4 className="font-medium text-[var(--text-primary)]">{order.productName}</h4>
-            <span className="font-bold text-[var(--text-secondary)]">₱{order.totalPrice.toFixed(2)}</span>
+            <h4 className="font-medium text-emerald-900">{order.productName}</h4>
+            <span className="font-bold text-emerald-700">${order.totalPrice.toFixed(2)}</span>
           </div>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="text-[var(--text-muted)]">Seller</p>
-              <p className="font-medium text-[var(--text-primary)]">{order.sellerName}</p>
+              <p className="text-emerald-600">Seller</p>
+              <p className="font-medium text-emerald-900">{order.sellerName}</p>
             </div>
             <div>
-              <p className="text-[var(--text-muted)]">Quantity</p>
-              <p className="font-medium text-[var(--text-primary)]">{order.quantity} units</p>
+              <p className="text-emerald-600">Quantity</p>
+              <p className="font-medium text-emerald-900">{order.quantity} units</p>
             </div>
           </div>
         </div>
@@ -121,13 +121,13 @@ export function BuyerOrders() {
         {/* Actions */}
         <div className="flex gap-2 pt-2">
           <Link to="/messages" className="flex-1">
-            <Button variant="outline" className="w-full border-[var(--border-color)]">
+            <Button variant="outline" className="w-full border-emerald-300">
               <MessageSquare className="w-4 h-4 mr-2" />
               Contact Seller
             </Button>
           </Link>
           {order.status === 'delivered' && (
-            <Button className="flex-1 bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
+            <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">
               Leave Review
             </Button>
           )}
@@ -144,47 +144,47 @@ export function BuyerOrders() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[var(--text-primary)]">My Orders</h1>
-        <p className="text-sm text-[var(--text-muted)] mt-0.5">Track and manage your purchases</p>
+        <h1 className="text-3xl font-bold text-emerald-900">My Orders</h1>
+        <p className="text-emerald-600 mt-1">Track and manage your purchases</p>
       </div>
 
       {/* Order Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardContent className="pt-6 text-center">
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{myOrders.length}</div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Total Orders</p>
+            <div className="text-2xl font-bold text-emerald-900">{myOrders.length}</div>
+            <p className="text-sm text-emerald-600 mt-1">Total Orders</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-blue-200">
+        <Card className="bg-white border-blue-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-blue-700">
               {filterOrders('shipped').length}
             </div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">In Transit</p>
+            <p className="text-sm text-emerald-600 mt-1">In Transit</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-amber-200">
+        <Card className="bg-white border-amber-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-amber-700">
               {filterOrders('pending').length + filterOrders('confirmed').length}
             </div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Processing</p>
+            <p className="text-sm text-emerald-600 mt-1">Processing</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-green-200">
+        <Card className="bg-white border-green-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-green-700">
               {filterOrders('delivered').length}
             </div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Delivered</p>
+            <p className="text-sm text-emerald-600 mt-1">Delivered</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Orders List */}
       <Tabs defaultValue="all" className="space-y-4">
-        <TabsList className="bg-[var(--card)] border border-[var(--border-color)]">
+        <TabsList className="bg-white border border-emerald-200">
           <TabsTrigger value="all">All Orders</TabsTrigger>
           <TabsTrigger value="active">Active</TabsTrigger>
           <TabsTrigger value="delivered">Delivered</TabsTrigger>
@@ -199,10 +199,10 @@ export function BuyerOrders() {
             <OrderCard key={order.id} order={order} />
           )}
           {myOrders.filter(o => o.status !== 'delivered').length === 0 && (
-            <Card className="bg-[var(--card)] border-[var(--border-color)]">
+            <Card className="bg-white border-emerald-200">
               <CardContent className="py-12 text-center">
                 <Package className="w-12 h-12 text-emerald-300 mx-auto mb-2" />
-                <p className="text-[var(--text-muted)]">No active orders</p>
+                <p className="text-emerald-600">No active orders</p>
               </CardContent>
             </Card>
           )}
@@ -211,10 +211,10 @@ export function BuyerOrders() {
         <TabsContent value="delivered" className="space-y-4">
           {filterOrders('delivered').map(order => <OrderCard key={order.id} order={order} />)}
           {filterOrders('delivered').length === 0 && (
-            <Card className="bg-[var(--card)] border-[var(--border-color)]">
+            <Card className="bg-white border-emerald-200">
               <CardContent className="py-12 text-center">
                 <CheckCircle className="w-12 h-12 text-emerald-300 mx-auto mb-2" />
-                <p className="text-[var(--text-muted)]">No delivered orders yet</p>
+                <p className="text-emerald-600">No delivered orders yet</p>
               </CardContent>
             </Card>
           )}

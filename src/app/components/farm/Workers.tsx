@@ -33,12 +33,12 @@ export function Workers() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Farm Workers</h1>
-          <p className="text-sm text-[var(--text-muted)] mt-0.5">Manage your farm workers and their tasks</p>
+          <h1 className="text-3xl font-bold text-emerald-900">Farm Workers</h1>
+          <p className="text-emerald-600 mt-1">Manage your farm workers and their tasks</p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
+            <Button className="bg-emerald-600 hover:bg-emerald-700">
               <Plus className="w-4 h-4 mr-2" />
               Add Worker
             </Button>
@@ -79,7 +79,7 @@ export function Workers() {
                 <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
                   Cancel
                 </Button>
-                <Button type="submit" className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
+                <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
                   Add Worker
                 </Button>
               </div>
@@ -90,34 +90,34 @@ export function Workers() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardContent className="pt-6 text-center">
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{workers.length}</div>
-            <p className="text-sm text-[var(--text-muted)]">Total Workers</p>
+            <div className="text-2xl font-bold text-emerald-900">{workers.length}</div>
+            <p className="text-sm text-emerald-600">Total Workers</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-green-200">
+        <Card className="bg-white border-green-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-green-700">
               {workers.filter(w => w.status === 'active').length}
             </div>
-            <p className="text-sm text-[var(--text-muted)]">Active</p>
+            <p className="text-sm text-emerald-600">Active</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-amber-200">
+        <Card className="bg-white border-amber-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-amber-700">
               {workers.filter(w => w.status === 'on-leave').length}
             </div>
-            <p className="text-sm text-[var(--text-muted)]">On Leave</p>
+            <p className="text-sm text-emerald-600">On Leave</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-blue-200">
+        <Card className="bg-white border-blue-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-blue-700">
               ₱{workers.reduce((sum, w) => sum + w.dailyRate, 0).toLocaleString()}
             </div>
-            <p className="text-sm text-[var(--text-muted)]">Total Daily Cost</p>
+            <p className="text-sm text-emerald-600">Total Daily Cost</p>
           </CardContent>
         </Card>
       </div>
@@ -125,11 +125,11 @@ export function Workers() {
       {/* Workers List */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {workers.map((worker) => (
-          <Card key={worker.id} className="bg-[var(--card)] border-[var(--border-color)]">
+          <Card key={worker.id} className="bg-white border-emerald-200">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div>
-                  <CardTitle className="text-[var(--text-primary)]">{worker.name}</CardTitle>
+                  <CardTitle className="text-emerald-900">{worker.name}</CardTitle>
                   <CardDescription>{worker.position}</CardDescription>
                 </div>
                 <Badge variant="outline" className={getStatusColor(worker.status)}>
@@ -141,23 +141,23 @@ export function Workers() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-2 text-sm">
-                  <Phone className="w-4 h-4 text-[var(--text-muted)]" />
-                  <span className="text-[var(--text-secondary)]">{worker.phoneNumber}</span>
+                  <Phone className="w-4 h-4 text-emerald-600" />
+                  <span className="text-emerald-700">{worker.phoneNumber}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <Calendar className="w-4 h-4 text-[var(--text-muted)]" />
-                  <span className="text-[var(--text-secondary)]">Since {worker.dateHired}</span>
+                  <Calendar className="w-4 h-4 text-emerald-600" />
+                  <span className="text-emerald-700">Since {worker.dateHired}</span>
                 </div>
               </div>
 
               <div className="p-3 bg-emerald-50 rounded-lg grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs text-[var(--text-muted)]">Daily Rate</p>
-                  <p className="font-bold text-[var(--text-primary)]">₱{worker.dailyRate}</p>
+                  <p className="text-xs text-emerald-600">Daily Rate</p>
+                  <p className="font-bold text-emerald-900">₱{worker.dailyRate}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-[var(--text-muted)]">Tasks Completed</p>
-                  <p className="font-bold text-[var(--text-primary)]">{worker.tasksCompleted}</p>
+                  <p className="text-xs text-emerald-600">Tasks Completed</p>
+                  <p className="font-bold text-emerald-900">{worker.tasksCompleted}</p>
                 </div>
               </div>
 

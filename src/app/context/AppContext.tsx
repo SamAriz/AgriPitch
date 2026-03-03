@@ -8,9 +8,6 @@ interface AppContextType {
   notifications: number;
   isDarkMode: boolean;
   toggleDarkMode: () => void;
-  isLoggedIn: boolean;
-  authName: string;
-  logout: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -23,38 +20,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem('philagri-theme');
     return saved === 'dark';
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return !!sessionStorage.getItem('philagri-auth');
-  });
-  const [authName, setAuthName] = useState(() => {
-    const saved = sessionStorage.getItem('philagri-auth');
-    if (saved) {
-      try { return JSON.parse(saved).name || 'User'; } catch { return 'User'; }
-    }
-    return 'User';
-  });
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
     localStorage.setItem('philagri-theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
 
-  const toggleDarkMode = () => setIsDarkMode(prev => !prev);
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   const setUserRole = (role: 'farmowner' | 'marketplace') => {
     setUser({ ...user, role });
   };
 
-  const logout = () => {
-    sessionStorage.removeItem('philagri-auth');
-    setIsLoggedIn(false);
-  };
-
   return (
-    <AppContext.Provider value={{
-      user, setUserRole, unreadMessages, notifications,
-      isDarkMode, toggleDarkMode, isLoggedIn, authName, logout,
-    }}>
+    <AppContext.Provider value={{ user, setUserRole, unreadMessages, notifications, isDarkMode, toggleDarkMode }}>
       {children}
     </AppContext.Provider>
   );
@@ -62,6 +47,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
 export function useApp() {
   const context = useContext(AppContext);
-  if (!context) throw new Error('useApp must be used within AppProvider');
+  if (!context) {
+    throw new Error('useApp must be used within AppProvider');
+  }
   return context;
 }

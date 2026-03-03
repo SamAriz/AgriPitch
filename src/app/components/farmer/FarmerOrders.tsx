@@ -46,11 +46,11 @@ export function FarmerOrders() {
   };
 
   const OrderCard = ({ order }: { order: typeof orders[0] }) => (
-    <Card className="bg-[var(--card)] border-[var(--border-color)]">
+    <Card className="bg-white border-emerald-200">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
-            <CardTitle className="text-[var(--text-primary)]">Order #{order.id}</CardTitle>
+            <CardTitle className="text-emerald-900">Order #{order.id}</CardTitle>
             <CardDescription className="mt-1">
               {order.buyerName} • {order.orderDate}
             </CardDescription>
@@ -64,21 +64,21 @@ export function FarmerOrders() {
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-4 p-4 bg-emerald-50 rounded-lg">
           <div>
-            <p className="text-sm text-[var(--text-muted)]">Product</p>
-            <p className="font-medium text-[var(--text-primary)]">{order.productName}</p>
+            <p className="text-sm text-emerald-600">Product</p>
+            <p className="font-medium text-emerald-900">{order.productName}</p>
           </div>
           <div>
-            <p className="text-sm text-[var(--text-muted)]">Quantity</p>
-            <p className="font-medium text-[var(--text-primary)]">{order.quantity} units</p>
+            <p className="text-sm text-emerald-600">Quantity</p>
+            <p className="font-medium text-emerald-900">{order.quantity} units</p>
           </div>
           <div>
-            <p className="text-sm text-[var(--text-muted)]">Total Price</p>
-            <p className="font-bold text-[var(--text-primary)]">₱{order.totalPrice.toFixed(2)}</p>
+            <p className="text-sm text-emerald-600">Total Price</p>
+            <p className="font-bold text-emerald-900">${order.totalPrice.toFixed(2)}</p>
           </div>
           {order.deliveryDate && (
             <div>
-              <p className="text-sm text-[var(--text-muted)]">Delivery Date</p>
-              <p className="font-medium text-[var(--text-primary)]">{order.deliveryDate}</p>
+              <p className="text-sm text-emerald-600">Delivery Date</p>
+              <p className="font-medium text-emerald-900">{order.deliveryDate}</p>
             </div>
           )}
         </div>
@@ -95,7 +95,7 @@ export function FarmerOrders() {
           {order.status === 'pending' && (
             <>
               <Button 
-                className="flex-1 bg-[var(--primary-green)] hover:bg-[var(--medium-green)]"
+                className="flex-1 bg-emerald-600 hover:bg-emerald-700"
                 onClick={() => handleUpdateStatus(order.id, 'confirmed')}
               >
                 Confirm Order
@@ -111,7 +111,7 @@ export function FarmerOrders() {
           )}
           {order.status === 'confirmed' && (
             <Button 
-              className="flex-1 bg-[var(--primary-green)] hover:bg-[var(--medium-green)]"
+              className="flex-1 bg-emerald-600 hover:bg-emerald-700"
               onClick={() => handleUpdateStatus(order.id, 'shipped')}
             >
               <Truck className="w-4 h-4 mr-2" />
@@ -120,7 +120,7 @@ export function FarmerOrders() {
           )}
           {order.status === 'shipped' && (
             <Button 
-              className="flex-1 bg-[var(--primary-green)] hover:bg-[var(--medium-green)]"
+              className="flex-1 bg-emerald-600 hover:bg-emerald-700"
               onClick={() => handleUpdateStatus(order.id, 'delivered')}
             >
               <CheckCircle className="w-4 h-4 mr-2" />
@@ -141,47 +141,47 @@ export function FarmerOrders() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Order Management</h1>
-        <p className="text-sm text-[var(--text-muted)] mt-0.5">Track and manage your orders</p>
+        <h1 className="text-3xl font-bold text-emerald-900">Order Management</h1>
+        <p className="text-emerald-600 mt-1">Track and manage your orders</p>
       </div>
 
       {/* Order Stats */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        <Card className="bg-[var(--card)] border-[var(--border-color)]">
+        <Card className="bg-white border-emerald-200">
           <CardContent className="pt-6 text-center">
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{orders.length}</div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Total Orders</p>
+            <div className="text-2xl font-bold text-emerald-900">{orders.length}</div>
+            <p className="text-sm text-emerald-600 mt-1">Total Orders</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-amber-200">
+        <Card className="bg-white border-amber-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-amber-700">{filterOrders('pending').length}</div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Pending</p>
+            <p className="text-sm text-emerald-600 mt-1">Pending</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-blue-200">
+        <Card className="bg-white border-blue-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-blue-700">{filterOrders('confirmed').length}</div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Confirmed</p>
+            <p className="text-sm text-emerald-600 mt-1">Confirmed</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-purple-200">
+        <Card className="bg-white border-purple-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-purple-700">{filterOrders('shipped').length}</div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Shipped</p>
+            <p className="text-sm text-emerald-600 mt-1">Shipped</p>
           </CardContent>
         </Card>
-        <Card className="bg-[var(--card)] border-green-200">
+        <Card className="bg-white border-green-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-green-700">{filterOrders('delivered').length}</div>
-            <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">Delivered</p>
+            <p className="text-sm text-emerald-600 mt-1">Delivered</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Orders Tabs */}
       <Tabs defaultValue="all" className="space-y-4">
-        <TabsList className="bg-[var(--card)] border border-[var(--border-color)]">
+        <TabsList className="bg-white border border-emerald-200">
           <TabsTrigger value="all">All Orders</TabsTrigger>
           <TabsTrigger value="pending">Pending</TabsTrigger>
           <TabsTrigger value="active">Active</TabsTrigger>
@@ -195,10 +195,10 @@ export function FarmerOrders() {
         <TabsContent value="pending" className="space-y-4">
           {filterOrders('pending').map(order => <OrderCard key={order.id} order={order} />)}
           {filterOrders('pending').length === 0 && (
-            <Card className="bg-[var(--card)] border-[var(--border-color)]">
+            <Card className="bg-white border-emerald-200">
               <CardContent className="py-12 text-center">
                 <Clock className="w-12 h-12 text-emerald-300 mx-auto mb-2" />
-                <p className="text-[var(--text-muted)]">No pending orders</p>
+                <p className="text-emerald-600">No pending orders</p>
               </CardContent>
             </Card>
           )}
@@ -209,10 +209,10 @@ export function FarmerOrders() {
             <OrderCard key={order.id} order={order} />
           )}
           {[...filterOrders('confirmed'), ...filterOrders('shipped')].length === 0 && (
-            <Card className="bg-[var(--card)] border-[var(--border-color)]">
+            <Card className="bg-white border-emerald-200">
               <CardContent className="py-12 text-center">
                 <Package className="w-12 h-12 text-emerald-300 mx-auto mb-2" />
-                <p className="text-[var(--text-muted)]">No active orders</p>
+                <p className="text-emerald-600">No active orders</p>
               </CardContent>
             </Card>
           )}
@@ -221,10 +221,10 @@ export function FarmerOrders() {
         <TabsContent value="completed" className="space-y-4">
           {filterOrders('delivered').map(order => <OrderCard key={order.id} order={order} />)}
           {filterOrders('delivered').length === 0 && (
-            <Card className="bg-[var(--card)] border-[var(--border-color)]">
+            <Card className="bg-white border-emerald-200">
               <CardContent className="py-12 text-center">
                 <CheckCircle className="w-12 h-12 text-emerald-300 mx-auto mb-2" />
-                <p className="text-[var(--text-muted)]">No completed orders</p>
+                <p className="text-emerald-600">No completed orders</p>
               </CardContent>
             </Card>
           )}
