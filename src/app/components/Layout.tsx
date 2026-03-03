@@ -1,249 +1,207 @@
-import { Outlet, Link, useLocation } from 'react-router';
+import { Outlet, Link, useLocation, useNavigate, Navigate } from 'react-router';
 import { AppProvider, useApp } from '../context/AppContext';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { 
-  LayoutDashboard, 
-  Package, 
-  ShoppingCart, 
-  Search, 
-  MessageSquare, 
-  User, 
-  BarChart3,
-  Bell,
-  Menu,
-  X,
-  Moon,
-  Sun,
-  Sprout
+import {
+  LayoutDashboard, Package, ShoppingCart, Search,
+  MessageSquare, User, Bell, Menu, X,
+  Moon, Sun, Sprout, Users, Tractor, FlaskConical,
+  ClipboardList, LogOut, ChevronRight
 } from 'lucide-react';
 import { useState } from 'react';
 import logo from '../../assets/46bb90f371e453e6f102bc4fe02a6b20d555d902.png';
 
 function LayoutContent() {
-  const { user, unreadMessages, notifications, isDarkMode, toggleDarkMode } = useApp();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user, isLoggedIn, logout, unreadMessages, notifications, isDarkMode, toggleDarkMode } = useApp();
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const getFarmLinks = () => [
-    { to: '/farm/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { to: '/farm/workers', icon: User, label: 'Workers' },
-    { to: '/farm/crops', icon: Sprout, label: 'Crops' },
-    { to: '/farm/machines', icon: Package, label: 'Machines' },
-    { to: '/farm/fertilizers', icon: ShoppingCart, label: 'Fertilizers' },
-    { to: '/farm/tasks', icon: BarChart3, label: 'Tasks' },
-  ];
-
-  const getMarketplaceLinks = () => [
-    { to: '/marketplace/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { to: '/marketplace/browse', icon: Search, label: 'Browse Products' },
-    { to: '/marketplace/my-listings', icon: Package, label: 'My Listings' },
-    { to: '/marketplace/orders', icon: ShoppingCart, label: 'Orders' },
-  ];
-
-  const getNavigationLinks = () => {
-    if (user.role === 'farmowner') return getFarmLinks();
-    if (user.role === 'marketplace') return getMarketplaceLinks();
-    return [];
-  };
-
-  const navLinks = getNavigationLinks();
-  const isRoleSelection = location.pathname === '/';
-
-  if (isRoleSelection) {
-    return <Outlet />;
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
   }
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  const farmLinks = [
+    { to: '/farm/dashboard',   icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/farm/workers',     icon: Users,           label: 'Workers' },
+    { to: '/farm/crops',       icon: Sprout,          label: 'Crops' },
+    { to: '/farm/machines',    icon: Tractor,         label: 'Machines' },
+    { to: '/farm/fertilizers', icon: FlaskConical,    label: 'Fertilizers' },
+    { to: '/farm/tasks',       icon: ClipboardList,   label: 'Tasks' },
+  ];
+
+  const marketLinks = [
+    { to: '/marketplace/dashboard',   icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/marketplace/browse',      icon: Search,          label: 'Browse' },
+    { to: '/marketplace/my-listings', icon: Package,         label: 'My Listings' },
+    { to: '/marketplace/orders',      icon: ShoppingCart,    label: 'Orders' },
+  ];
+
+  const sharedLinks = [
+    { to: '/messages', icon: MessageSquare, label: 'Messages', badge: unreadMessages },
+    { to: '/profile',  icon: User,          label: 'Profile' },
+  ];
+
+  const navLinks = user.role === 'farmowner' ? farmLinks : marketLinks;
+  const isRoleSelection = location.pathname === '/';
+  if (isRoleSelection) return <Outlet />;
+
   const roleLabel = user.role === 'farmowner' ? 'Farm Management' : 'Marketplace';
+  const roleColor = user.role === 'farmowner' ? 'bg-[var(--primary-green)]' : 'bg-[var(--amber-deep)]';
+
+  const SidebarContent = () => (
+    <div className="flex flex-col h-full">
+      <div className="px-5 py-5 border-b border-[var(--sidebar-border)]">
+        <Link to="/" className="flex items-center gap-3" onClick={() => setSidebarOpen(false)}>
+          <img src={logo} alt="Philagri" className="w-10 h-10 object-contain rounded-lg" />
+          <div>
+            <div className="font-bold text-white text-base leading-tight" style={{fontFamily:'Outfit,sans-serif'}}>Philagri</div>
+            <div className="text-[10px] text-[var(--sidebar-foreground)] opacity-60 leading-tight">Smart Farming. Digital Future.</div>
+          </div>
+        </Link>
+      </div>
+
+      <div className="px-5 py-3">
+        <span className={`${roleColor} text-white text-[11px] font-semibold px-3 py-1 rounded-full`}>{roleLabel}</span>
+      </div>
+
+      <nav className="flex-1 px-3 pb-3 overflow-y-auto space-y-0.5">
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--sidebar-foreground)] opacity-40 px-2 py-2">
+          {user.role === 'farmowner' ? 'Farm' : 'Marketplace'}
+        </p>
+        {navLinks.map(link => {
+          const Icon = link.icon;
+          const active = location.pathname === link.to;
+          return (
+            <Link key={link.to} to={link.to} onClick={() => setSidebarOpen(false)}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                active
+                  ? 'bg-[var(--primary-green)] text-white shadow-md'
+                  : 'text-[var(--sidebar-foreground)] hover:bg-[var(--sidebar-accent)] hover:text-white'
+              }`}>
+              <Icon className="w-4 h-4 flex-shrink-0" />
+              <span className="flex-1">{link.label}</span>
+              {active && <ChevronRight className="w-3.5 h-3.5 opacity-60" />}
+            </Link>
+          );
+        })}
+
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--sidebar-foreground)] opacity-40 px-2 py-2 mt-3">
+          Account
+        </p>
+        {sharedLinks.map(link => {
+          const Icon = link.icon;
+          const active = location.pathname === link.to;
+          return (
+            <Link key={link.to} to={link.to} onClick={() => setSidebarOpen(false)}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                active
+                  ? 'bg-[var(--primary-green)] text-white shadow-md'
+                  : 'text-[var(--sidebar-foreground)] hover:bg-[var(--sidebar-accent)] hover:text-white'
+              }`}>
+              <Icon className="w-4 h-4 flex-shrink-0" />
+              <span className="flex-1">{link.label}</span>
+              {link.badge ? (
+                <span className="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
+                  {link.badge}
+                </span>
+              ) : active ? <ChevronRight className="w-3.5 h-3.5 opacity-60" /> : null}
+            </Link>
+          );
+        })}
+      </nav>
+
+      <div className="px-3 py-4 border-t border-[var(--sidebar-border)] space-y-1">
+        <button onClick={toggleDarkMode}
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[var(--sidebar-foreground)] hover:bg-[var(--sidebar-accent)] hover:text-white transition-all">
+          <div className={`relative w-9 h-5 rounded-full transition-colors ${isDarkMode ? 'bg-[var(--primary-green)]' : 'bg-white/20'}`}>
+            <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${isDarkMode ? 'translate-x-4' : 'translate-x-0.5'}`} />
+          </div>
+          {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+        </button>
+
+        <Link to="/" onClick={() => setSidebarOpen(false)}
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[var(--sidebar-foreground)] hover:bg-white/10 hover:text-white transition-all">
+          <LogOut className="w-4 h-4" />
+          <span>Switch Role</span>
+        </Link>
+
+        <button onClick={() => { setSidebarOpen(false); handleLogout(); }}
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[var(--sidebar-foreground)] hover:bg-red-500/20 hover:text-red-300 transition-all">
+          <LogOut className="w-4 h-4 rotate-180" />
+          <span>Log Out</span>
+        </button>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card border-b border-[var(--border-color)] sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-2">
-              <img 
-                src={logo} 
-                alt="Philagri Logo" 
-                className="w-[50px] h-[50px] object-contain"
-              />
-              <div>
-                <h1 className="font-bold text-[var(--text-primary)]">Philagri</h1>
-                <p className="text-xs text-[var(--text-secondary)]">{roleLabel}</p>
-              </div>
+    <div className="flex h-screen overflow-hidden bg-[var(--background)]">
+      <aside className="hidden lg:flex flex-col w-60 flex-shrink-0 bg-[var(--sidebar-bg)]">
+        <SidebarContent />
+      </aside>
+
+      {sidebarOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+          <aside className="relative w-64 bg-[var(--sidebar-bg)] flex flex-col z-10 shadow-2xl">
+            <button onClick={() => setSidebarOpen(false)} className="absolute top-4 right-4 text-white/60 hover:text-white">
+              <X className="w-5 h-5" />
+            </button>
+            <SidebarContent />
+          </aside>
+        </div>
+      )}
+
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <header className="flex-shrink-0 bg-[var(--card)] border-b border-[var(--border-color)] px-4 lg:px-6 py-3 flex items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <button onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-2 rounded-lg hover:bg-[var(--muted-bg)] text-[var(--text-secondary)] transition-colors">
+              <Menu className="w-5 h-5" />
+            </button>
+            <div className="hidden sm:flex items-center gap-2 text-sm">
+              <span className="text-[var(--text-muted)]">{roleLabel}</span>
+              <ChevronRight className="w-3.5 h-3.5 text-[var(--text-muted)]" />
+              <span className="font-semibold text-[var(--text-primary)] capitalize">
+                {location.pathname.split('/').pop()?.replace(/-/g, ' ') || 'Dashboard'}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button className="relative p-2 rounded-lg hover:bg-[var(--muted-bg)] text-[var(--text-secondary)] transition-colors">
+              <Bell className="w-5 h-5" />
+              {notifications > 0 && <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />}
+            </button>
+
+            <Link to="/messages" className="relative p-2 rounded-lg hover:bg-[var(--muted-bg)] text-[var(--text-secondary)] transition-colors">
+              <MessageSquare className="w-5 h-5" />
+              {unreadMessages > 0 && <span className="absolute top-1 right-1 w-2 h-2 bg-[var(--primary-green)] rounded-full" />}
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                const isActive = location.pathname === link.to;
-                return (
-                  <Link key={link.to} to={link.to}>
-                    <Button 
-                      variant={isActive ? "default" : "ghost"}
-                      className={isActive ? "bg-[var(--primary-green)] hover:bg-[var(--medium-green)] text-white" : ""}
-                    >
-                      <Icon className="w-4 h-4 mr-2" />
-                      {link.label}
-                    </Button>
-                  </Link>
-                );
-              })}
-              <Link to="/messages">
-                <Button variant="ghost" className="relative">
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  Messages
-                  {unreadMessages > 0 && (
-                    <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-red-500">
-                      {unreadMessages}
-                    </Badge>
-                  )}
-                </Button>
-              </Link>
-            </nav>
+            <button onClick={toggleDarkMode}
+              className="hidden lg:flex p-2 rounded-lg hover:bg-[var(--muted-bg)] text-[var(--text-secondary)] transition-colors">
+              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
 
-            {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="w-5 h-5" />
-                {notifications > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-red-500">
-                    {notifications}
-                  </Badge>
-                )}
-              </Button>
-              <Link to="/profile">
-                <Button variant="ghost" size="icon">
-                  <User className="w-5 h-5" />
-                </Button>
-              </Link>
-              
-              {/* Divider */}
-              <div className="w-px h-6 bg-[var(--border-color)] mx-1"></div>
-
-              {/* Dark Mode Toggle */}
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={toggleDarkMode}
-                className="flex items-center gap-2"
-              >
-                <div className="relative w-11 h-6 bg-[var(--muted-bg)] rounded-full transition-colors">
-                  <div 
-                    className={`absolute top-1 w-4 h-4 bg-[var(--primary-green)] rounded-full transition-transform ${
-                      isDarkMode ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  ></div>
-                </div>
-                {isDarkMode ? (
-                  <>
-                    <Sun className="w-4 h-4" />
-                    <span className="text-sm">Light</span>
-                  </>
-                ) : (
-                  <>
-                    <Moon className="w-4 h-4" />
-                    <span className="text-sm">Dark</span>
-                  </>
-                )}
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X /> : <Menu />}
-            </Button>
+            <Link to="/profile" className="flex items-center gap-2 pl-2 border-l border-[var(--border-color)] ml-1">
+              <div className="w-8 h-8 rounded-full bg-[var(--pale-green)] flex items-center justify-center">
+                <User className="w-4 h-4 text-[var(--primary-green)]" />
+              </div>
+              <span className="hidden sm:block text-sm font-medium text-[var(--text-primary)]">{user.name || 'User'}</span>
+            </Link>
           </div>
+        </header>
 
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-[var(--border-color)] pt-4">
-              <nav className="flex flex-col gap-2">
-                {navLinks.map((link) => {
-                  const Icon = link.icon;
-                  const isActive = location.pathname === link.to;
-                  return (
-                    <Link key={link.to} to={link.to} onClick={() => setMobileMenuOpen(false)}>
-                      <Button 
-                        variant={isActive ? "default" : "ghost"}
-                        className={`w-full justify-start ${isActive ? "bg-[var(--primary-green)] hover:bg-[var(--medium-green)] text-white" : ""}`}
-                      >
-                        <Icon className="w-4 h-4 mr-2" />
-                        {link.label}
-                      </Button>
-                    </Link>
-                  );
-                })}
-                <Link to="/messages" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start relative">
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Messages
-                    {unreadMessages > 0 && (
-                      <Badge className="ml-auto bg-red-500">{unreadMessages}</Badge>
-                    )}
-                  </Button>
-                </Link>
-                <Link to="/profile" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start">
-                    <User className="w-4 h-4 mr-2" />
-                    Profile
-                  </Button>
-                </Link>
-                
-                {/* Mobile Dark Mode Toggle */}
-                <div className="pt-2 border-t border-[var(--border-color)] mt-2">
-                  <Button 
-                    variant="ghost" 
-                    className="w-full justify-start"
-                    onClick={() => {
-                      toggleDarkMode();
-                      setMobileMenuOpen(false);
-                    }}
-                  >
-                    {isDarkMode ? (
-                      <>
-                        <Sun className="w-4 h-4 mr-2" />
-                        Switch to Light Mode
-                      </>
-                    ) : (
-                      <>
-                        <Moon className="w-4 h-4 mr-2" />
-                        Switch to Dark Mode
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </nav>
-            </div>
-          )}
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-6">
-        <Outlet />
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-card border-t border-[var(--border-color)] mt-12">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-center gap-2 text-sm text-[var(--text-secondary)]">
-            <img 
-              src={logo} 
-              alt="Philagri Logo" 
-              className="w-[30px] h-[30px] object-contain"
-            />
-            <p>&copy; 2026 Philagri · Smart Farming. Digital Future.</p>
-          </div>
-        </div>
-      </footer>
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
