@@ -69,7 +69,7 @@ export function BuyerOrders() {
         <div className="p-4 bg-emerald-50 rounded-lg">
           <div className="flex items-center justify-between mb-3">
             <h4 className="font-medium text-emerald-900">{order.productName}</h4>
-            <span className="font-bold text-emerald-700">${order.totalPrice.toFixed(2)}</span>
+            <span className="font-bold text-emerald-700">₱{order.totalPrice.toFixed(2)}</span>
           </div>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
