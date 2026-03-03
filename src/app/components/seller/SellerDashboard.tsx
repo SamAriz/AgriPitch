@@ -25,19 +25,19 @@ export function SellerDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-emerald-900">Seller Dashboard</h1>
-        <p className="text-emerald-600 mt-1">Manage your business and track performance</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Seller Dashboard</h1>
+        <p className="text-sm text-[var(--text-muted)] mt-0.5">Manage your business and track performance</p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Total Revenue</CardTitle>
             <DollarSign className="w-4 h-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">${totalRevenue.toFixed(2)}</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">₱{totalRevenue.toFixed(2)}</div>
             <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
               +18% from last month
@@ -45,26 +45,26 @@ export function SellerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Active Products</CardTitle>
-            <Package className="w-4 h-4 text-emerald-600" />
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Active Products</CardTitle>
+            <Package className="w-4 h-4 text-[var(--text-muted)]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">{activeProducts}</div>
-            <p className="text-xs text-emerald-600 mt-1">
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{activeProducts}</div>
+            <p className="text-xs text-sm text-[var(--text-muted)] mt-0.5">
               {myProducts.length} total listings
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Total Orders</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Total Orders</CardTitle>
             <Users className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">{myOrders.length}</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{myOrders.length}</div>
             <p className="text-xs text-blue-600 mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
               +7 this week
@@ -72,14 +72,14 @@ export function SellerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Avg. Rating</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Avg. Rating</CardTitle>
             <Star className="w-4 h-4 text-amber-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">{avgRating.toFixed(1)}</div>
-            <p className="text-xs text-emerald-600 mt-1">
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{avgRating.toFixed(1)}</div>
+            <p className="text-xs text-sm text-[var(--text-muted)] mt-0.5">
               From {myProducts.reduce((sum, p) => sum + p.reviews, 0)} reviews
             </p>
           </CardContent>
@@ -88,9 +88,9 @@ export function SellerDashboard() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader>
-            <CardTitle className="text-emerald-900">Revenue Trend</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Revenue Trend</CardTitle>
             <CardDescription>Monthly revenue over the last 6 months</CardDescription>
           </CardHeader>
           <CardContent>
@@ -107,7 +107,7 @@ export function SellerDashboard() {
                 <YAxis stroke="#059669" />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#fff', border: '1px solid #10b981' }}
-                  formatter={(value) => `$${value}`}
+                  formatter={(value) => `₱${value}`}
                 />
                 <Area 
                   type="monotone" 
@@ -122,9 +122,9 @@ export function SellerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader>
-            <CardTitle className="text-emerald-900">Daily Sales</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Daily Sales</CardTitle>
             <CardDescription>Sales activity this week</CardDescription>
           </CardHeader>
           <CardContent>
@@ -151,14 +151,14 @@ export function SellerDashboard() {
       </div>
 
       {/* Top Products */}
-      <Card className="bg-white border-emerald-200">
+      <Card className="bg-[var(--card)] border-[var(--border-color)]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="text-emerald-900">Top Performing Products</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Top Performing Products</CardTitle>
             <CardDescription>Your best sellers this month</CardDescription>
           </div>
           <Link to="/seller/analytics">
-            <Button variant="outline" size="sm" className="border-emerald-300">
+            <Button variant="outline" size="sm" className="border-[var(--border-color)]">
               View Analytics
               <ArrowUpRight className="w-4 h-4 ml-2" />
             </Button>
@@ -168,7 +168,7 @@ export function SellerDashboard() {
           <div className="space-y-4">
             {myProducts.slice(0, 3).map((product, index) => (
               <div key={product.id} className="flex items-center gap-4 p-4 bg-emerald-50 rounded-lg">
-                <div className="flex items-center justify-center w-8 h-8 bg-emerald-200 rounded-full font-bold text-emerald-900">
+                <div className="flex items-center justify-center w-8 h-8 bg-emerald-200 rounded-full font-bold text-[var(--text-primary)]">
                   {index + 1}
                 </div>
                 <img 
@@ -177,8 +177,8 @@ export function SellerDashboard() {
                   className="w-16 h-16 object-cover rounded-lg"
                 />
                 <div className="flex-1">
-                  <h4 className="font-medium text-emerald-900">{product.name}</h4>
-                  <div className="flex items-center gap-3 mt-1 text-sm text-emerald-600">
+                  <h4 className="font-medium text-[var(--text-primary)]">{product.name}</h4>
+                  <div className="flex items-center gap-3 mt-1 text-sm text-[var(--text-muted)]">
                     <div className="flex items-center gap-1">
                       <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                       <span>{product.rating}</span>
@@ -188,8 +188,8 @@ export function SellerDashboard() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-emerald-900">${product.price}/{product.unit}</p>
-                  <p className="text-sm text-emerald-600">{product.quantity} {product.unit} left</p>
+                  <p className="font-bold text-[var(--text-primary)]">₱{product.price}/{product.unit}</p>
+                  <p className="text-sm text-[var(--text-muted)]">{product.quantity} {product.unit} left</p>
                 </div>
               </div>
             ))}
@@ -198,14 +198,14 @@ export function SellerDashboard() {
       </Card>
 
       {/* Recent Orders */}
-      <Card className="bg-white border-emerald-200">
+      <Card className="bg-[var(--card)] border-[var(--border-color)]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="text-emerald-900">Recent Orders</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Recent Orders</CardTitle>
             <CardDescription>Latest customer orders</CardDescription>
           </div>
           <Link to="/seller/products">
-            <Button variant="outline" size="sm" className="border-emerald-300">
+            <Button variant="outline" size="sm" className="border-[var(--border-color)]">
               Manage Products
               <ArrowUpRight className="w-4 h-4 ml-2" />
             </Button>
@@ -214,14 +214,14 @@ export function SellerDashboard() {
         <CardContent>
           <div className="space-y-3">
             {myOrders.slice(0, 5).map((order) => (
-              <div key={order.id} className="flex items-center justify-between p-3 border border-emerald-200 rounded-lg hover:bg-emerald-50 transition-colors">
+              <div key={order.id} className="flex items-center justify-between p-3 border border-[var(--border-color)] rounded-lg hover:bg-emerald-50 transition-colors">
                 <div className="flex-1">
-                  <p className="font-medium text-emerald-900">{order.productName}</p>
-                  <p className="text-sm text-emerald-600">{order.buyerName} • {order.quantity} units</p>
+                  <p className="font-medium text-[var(--text-primary)]">{order.productName}</p>
+                  <p className="text-sm text-[var(--text-muted)]">{order.buyerName} • {order.quantity} units</p>
                 </div>
                 <div className="text-right mr-4">
-                  <p className="font-medium text-emerald-900">${order.totalPrice.toFixed(2)}</p>
-                  <p className="text-xs text-emerald-600">{order.orderDate}</p>
+                  <p className="font-medium text-[var(--text-primary)]">₱{order.totalPrice.toFixed(2)}</p>
+                  <p className="text-xs text-[var(--text-muted)]">{order.orderDate}</p>
                 </div>
                 <Badge 
                   variant="outline"

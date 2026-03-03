@@ -38,12 +38,12 @@ export function FarmerProducts() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-emerald-900">My Products</h1>
-          <p className="text-emerald-600 mt-1">Manage your produce listings</p>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">My Products</h1>
+          <p className="text-sm text-[var(--text-muted)] mt-0.5">Manage your produce listings</p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-emerald-600 hover:bg-emerald-700">
+            <Button className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
               <Plus className="w-4 h-4 mr-2" />
               Add Product
             </Button>
@@ -76,8 +76,8 @@ export function FarmerProducts() {
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="price">Price</Label>
-                  <Input id="price" type="number" step="0.01" placeholder="0.00" required />
+                  <Label htmlFor="price">Price (₱)</Label>
+                  <Input id="price" type="number" step="0.01" placeholder="e.g. 120.00" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="quantity">Quantity</Label>
@@ -113,13 +113,13 @@ export function FarmerProducts() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="location">Location</Label>
-                <Input id="location" placeholder="e.g., California, USA" required />
+                <Input id="location" placeholder="e.g., Batangas, Philippines" required />
               </div>
               <div className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
                   Cancel
                 </Button>
-                <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
+                <Button type="submit" className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
                   Add Product
                 </Button>
               </div>
@@ -131,7 +131,7 @@ export function FarmerProducts() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {products.map((product) => (
-          <Card key={product.id} className="bg-white border-emerald-200">
+          <Card key={product.id} className="bg-[var(--card)] border-[var(--border-color)]">
             <CardContent className="p-0">
               <div className="flex flex-col md:flex-row">
                 <img 
@@ -142,32 +142,32 @@ export function FarmerProducts() {
                 <div className="flex-1 p-6">
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <h3 className="font-bold text-lg text-emerald-900">{product.name}</h3>
-                      <p className="text-sm text-emerald-600">{product.category}</p>
+                      <h3 className="font-bold text-lg text-[var(--text-primary)]">{product.name}</h3>
+                      <p className="text-sm text-[var(--text-muted)]">{product.category}</p>
                     </div>
                     <div className="flex items-center gap-1 text-sm">
                       <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <span className="font-medium text-emerald-900">{product.rating}</span>
-                      <span className="text-emerald-600">({product.reviews})</span>
+                      <span className="font-medium text-[var(--text-primary)]">{product.rating}</span>
+                      <span className="text-[var(--text-muted)]">({product.reviews})</span>
                     </div>
                   </div>
                   
-                  <p className="text-sm text-emerald-700 mb-4 line-clamp-2">{product.description}</p>
+                  <p className="text-sm text-[var(--text-secondary)] mb-4 line-clamp-2">{product.description}</p>
                   
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                      <p className="text-xs text-emerald-600">Price</p>
-                      <p className="font-bold text-emerald-900">₱{product.price}/{product.unit}</p>
+                      <p className="text-xs text-[var(--text-muted)]">Price</p>
+                      <p className="font-bold text-[var(--text-primary)]">₱{product.price}/{product.unit}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-emerald-600">Available</p>
-                      <p className="font-medium text-emerald-900">{product.quantity} {product.unit}</p>
+                      <p className="text-xs text-[var(--text-muted)]">Available</p>
+                      <p className="font-medium text-[var(--text-primary)]">{product.quantity} {product.unit}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between pt-4 border-t border-emerald-100">
                     <div className="flex items-center gap-2">
-                      <Label htmlFor={`available-${product.id}`} className="text-sm text-emerald-700">
+                      <Label htmlFor={`available-${product.id}`} className="text-sm text-[var(--text-secondary)]">
                         {product.available ? 'Active' : 'Inactive'}
                       </Label>
                       <Switch 
@@ -177,7 +177,7 @@ export function FarmerProducts() {
                       />
                     </div>
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="border-emerald-300">
+                      <Button variant="outline" size="sm" className="border-[var(--border-color)]">
                         <Edit className="w-4 h-4" />
                       </Button>
                       <Button 
@@ -198,14 +198,14 @@ export function FarmerProducts() {
       </div>
 
       {products.length === 0 && (
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="flex flex-col items-center justify-center py-12">
             <Package className="w-16 h-16 text-emerald-300 mb-4" />
-            <h3 className="font-medium text-emerald-900 mb-2">No products yet</h3>
-            <p className="text-emerald-600 text-center mb-4">
+            <h3 className="font-medium text-[var(--text-primary)] mb-2">No products yet</h3>
+            <p className="text-[var(--text-muted)] text-center mb-4">
               Start by adding your first product to the marketplace
             </p>
-            <Button className="bg-emerald-600 hover:bg-emerald-700" onClick={() => setIsAddDialogOpen(true)}>
+            <Button className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]" onClick={() => setIsAddDialogOpen(true)}>
               <Plus className="w-4 h-4 mr-2" />
               Add Product
             </Button>

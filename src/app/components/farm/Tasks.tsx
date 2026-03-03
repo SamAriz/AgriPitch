@@ -27,17 +27,17 @@ export function Tasks() {
   };
 
   const TaskCard = ({ task }: { task: typeof tasks[0] }) => (
-    <Card className="bg-white border-emerald-200">
+    <Card className="bg-[var(--card)] border-[var(--border-color)]">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <CardTitle className="text-emerald-900 mb-2">{task.title}</CardTitle>
+            <CardTitle className="text-[var(--text-primary)] mb-2">{task.title}</CardTitle>
             <div className="flex flex-wrap gap-2">
               <Badge variant="outline" className={getPriorityColor(task.priority)}>
                 <AlertCircle className="w-3 h-3 mr-1" />
                 {task.priority}
               </Badge>
-              <Badge variant="outline" className="border-emerald-300 text-emerald-700">
+              <Badge variant="outline" className="border-emerald-300 text-[var(--text-secondary)]">
                 {task.crop}
               </Badge>
             </div>
@@ -47,12 +47,12 @@ export function Tasks() {
       <CardContent className="space-y-3">
         <div className="p-3 bg-emerald-50 rounded-lg space-y-1 text-sm">
           <div className="flex justify-between">
-            <span className="text-emerald-600">Assigned to</span>
-            <span className="font-medium text-emerald-900">{task.assignedWorker}</span>
+            <span className="text-[var(--text-muted)]">Assigned to</span>
+            <span className="font-medium text-[var(--text-primary)]">{task.assignedWorker}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-emerald-600">Due date</span>
-            <span className="font-medium text-emerald-900">{task.dueDate}</span>
+            <span className="text-[var(--text-muted)]">Due date</span>
+            <span className="font-medium text-[var(--text-primary)]">{task.dueDate}</span>
           </div>
         </div>
 
@@ -89,50 +89,50 @@ export function Tasks() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-emerald-900">Farm Tasks</h1>
-          <p className="text-emerald-600 mt-1">Manage and track daily farm activities</p>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Farm Tasks</h1>
+          <p className="text-sm text-[var(--text-muted)] mt-0.5">Manage and track daily farm activities</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
           <Plus className="w-4 h-4 mr-2" />
           Add Task
         </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="pt-6 text-center">
-            <div className="text-2xl font-bold text-emerald-900">{tasks.length}</div>
-            <p className="text-sm text-emerald-600">Total Tasks</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{tasks.length}</div>
+            <p className="text-sm text-[var(--text-muted)]">Total Tasks</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-amber-200">
+        <Card className="bg-[var(--card)] border-amber-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-amber-700">
               {tasks.filter(t => t.status === 'pending').length}
             </div>
-            <p className="text-sm text-emerald-600">Pending</p>
+            <p className="text-sm text-[var(--text-muted)]">Pending</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-blue-200">
+        <Card className="bg-[var(--card)] border-blue-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-blue-700">
               {tasks.filter(t => t.status === 'in-progress').length}
             </div>
-            <p className="text-sm text-emerald-600">In Progress</p>
+            <p className="text-sm text-[var(--text-muted)]">In Progress</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-green-200">
+        <Card className="bg-[var(--card)] border-green-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-green-700">
               {tasks.filter(t => t.status === 'completed').length}
             </div>
-            <p className="text-sm text-emerald-600">Completed</p>
+            <p className="text-sm text-[var(--text-muted)]">Completed</p>
           </CardContent>
         </Card>
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">
-        <TabsList className="bg-white border border-emerald-200">
+        <TabsList className="bg-[var(--card)] border border-[var(--border-color)]">
           <TabsTrigger value="all">All Tasks</TabsTrigger>
           <TabsTrigger value="pending">Pending</TabsTrigger>
           <TabsTrigger value="in-progress">In Progress</TabsTrigger>

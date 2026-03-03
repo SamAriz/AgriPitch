@@ -26,23 +26,23 @@ export function Profile() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-emerald-900">Profile</h1>
-        <p className="text-emerald-600 mt-1">Manage your account information</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Profile</h1>
+        <p className="text-sm text-[var(--text-muted)] mt-0.5">Manage your account information</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Overview */}
-        <Card className="bg-white border-emerald-200 lg:col-span-1">
+        <Card className="bg-[var(--card)] border-[var(--border-color)] lg:col-span-1">
           <CardContent className="pt-6">
             <div className="text-center">
               <Avatar className="w-24 h-24 mx-auto mb-4">
                 <AvatarImage src={formData.avatar} />
-                <AvatarFallback className="bg-emerald-200 text-emerald-900 text-2xl">
+                <AvatarFallback className="bg-emerald-200 text-[var(--text-primary)] text-2xl">
                   {formData.name.charAt(0)}
                 </AvatarFallback>
               </Avatar>
-              <h2 className="font-bold text-xl text-emerald-900 mb-1">{formData.name}</h2>
-              <Badge className="mb-4 bg-emerald-600 capitalize">{formData.role}</Badge>
+              <h2 className="font-bold text-xl text-[var(--text-primary)] mb-1">{formData.name}</h2>
+              <Badge className="mb-4 bg-[var(--primary-green)] capitalize">{formData.role}</Badge>
               {formData.verified && (
                 <Badge variant="outline" className="border-blue-500 text-blue-700 mb-4">
                   <Shield className="w-3 h-3 mr-1" />
@@ -50,20 +50,20 @@ export function Profile() {
                 </Badge>
               )}
               <div className="space-y-3 mt-6 text-left">
-                <div className="flex items-center gap-2 text-sm text-emerald-700">
-                  <Mail className="w-4 h-4 text-emerald-600" />
+                <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                  <Mail className="w-4 h-4 text-[var(--text-muted)]" />
                   <span>{formData.email}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-emerald-700">
-                  <Phone className="w-4 h-4 text-emerald-600" />
+                <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                  <Phone className="w-4 h-4 text-[var(--text-muted)]" />
                   <span>{formData.phone}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-emerald-700">
-                  <MapPin className="w-4 h-4 text-emerald-600" />
+                <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                  <MapPin className="w-4 h-4 text-[var(--text-muted)]" />
                   <span>{formData.location}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-emerald-700">
-                  <Calendar className="w-4 h-4 text-emerald-600" />
+                <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                  <Calendar className="w-4 h-4 text-[var(--text-muted)]" />
                   <span>Joined {formData.joinDate}</span>
                 </div>
               </div>
@@ -72,17 +72,17 @@ export function Profile() {
         </Card>
 
         {/* Profile Details */}
-        <Card className="bg-white border-emerald-200 lg:col-span-2">
+        <Card className="bg-[var(--card)] border-[var(--border-color)] lg:col-span-2">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-emerald-900">Account Details</CardTitle>
+                <CardTitle className="text-[var(--text-primary)]">Account Details</CardTitle>
                 <CardDescription>Update your profile information</CardDescription>
               </div>
               {!isEditing && (
                 <Button 
                   variant="outline" 
-                  className="border-emerald-300"
+                  className="border-[var(--border-color)]"
                   onClick={() => setIsEditing(true)}
                 >
                   Edit Profile
@@ -92,7 +92,7 @@ export function Profile() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="personal" className="space-y-4">
-              <TabsList className="bg-white border border-emerald-200">
+              <TabsList className="bg-[var(--card)] border border-[var(--border-color)]">
                 <TabsTrigger value="personal">Personal Info</TabsTrigger>
                 <TabsTrigger value="business">Business Details</TabsTrigger>
                 <TabsTrigger value="verification">Verification</TabsTrigger>
@@ -108,7 +108,7 @@ export function Profile() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         disabled={!isEditing}
-                        className="border-emerald-300"
+                        className="border-[var(--border-color)]"
                       />
                     </div>
                     <div className="space-y-2">
@@ -119,7 +119,7 @@ export function Profile() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         disabled={!isEditing}
-                        className="border-emerald-300"
+                        className="border-[var(--border-color)]"
                       />
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export function Profile() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         disabled={!isEditing}
-                        className="border-emerald-300"
+                        className="border-[var(--border-color)]"
                       />
                     </div>
                     <div className="space-y-2">
@@ -142,7 +142,7 @@ export function Profile() {
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         disabled={!isEditing}
-                        className="border-emerald-300"
+                        className="border-[var(--border-color)]"
                       />
                     </div>
                   </div>
@@ -156,7 +156,7 @@ export function Profile() {
                       >
                         Cancel
                       </Button>
-                      <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
+                      <Button type="submit" className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
                         Save Changes
                       </Button>
                     </div>
@@ -172,7 +172,7 @@ export function Profile() {
                       id="business"
                       placeholder="Your farm or business name"
                       disabled={!isEditing}
-                      className="border-emerald-300"
+                      className="border-[var(--border-color)]"
                     />
                   </div>
                   <div className="space-y-2">
@@ -182,7 +182,7 @@ export function Profile() {
                       placeholder="Tell customers about your business..."
                       rows={4}
                       disabled={!isEditing}
-                      className="border-emerald-300"
+                      className="border-[var(--border-color)]"
                     />
                   </div>
                   <div className="space-y-2">
@@ -192,7 +192,7 @@ export function Profile() {
                       type="url"
                       placeholder="https://..."
                       disabled={!isEditing}
-                      className="border-emerald-300"
+                      className="border-[var(--border-color)]"
                     />
                   </div>
                 </div>
@@ -200,12 +200,12 @@ export function Profile() {
 
               <TabsContent value="verification">
                 <div className="space-y-4">
-                  <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+                  <div className="p-4 bg-emerald-50 border border-[var(--border-color)] rounded-lg">
                     <div className="flex items-start gap-3">
-                      <Shield className="w-5 h-5 text-emerald-600 mt-0.5" />
+                      <Shield className="w-5 h-5 text-[var(--text-muted)] mt-0.5" />
                       <div className="flex-1">
-                        <h4 className="font-medium text-emerald-900 mb-1">Verification Status</h4>
-                        <p className="text-sm text-emerald-700 mb-3">
+                        <h4 className="font-medium text-[var(--text-primary)] mb-1">Verification Status</h4>
+                        <p className="text-sm text-[var(--text-secondary)] mb-3">
                           Your account is verified. This badge helps build trust with other users.
                         </p>
                         <Badge className="bg-blue-500">
@@ -220,8 +220,8 @@ export function Profile() {
                     <div className="flex items-start gap-3">
                       <Award className="w-5 h-5 text-amber-600 mt-0.5" />
                       <div className="flex-1">
-                        <h4 className="font-medium text-emerald-900 mb-1">Premium Membership</h4>
-                        <p className="text-sm text-emerald-700 mb-3">
+                        <h4 className="font-medium text-[var(--text-primary)] mb-1">Premium Membership</h4>
+                        <p className="text-sm text-[var(--text-secondary)] mb-3">
                           Upgrade to premium to unlock advanced features and analytics.
                         </p>
                         <Button variant="outline" className="border-amber-300">
@@ -232,18 +232,18 @@ export function Profile() {
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="font-medium text-emerald-900">Required Documents</h4>
+                    <h4 className="font-medium text-[var(--text-primary)]">Required Documents</h4>
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between p-3 border border-emerald-200 rounded-lg">
-                        <span className="text-sm text-emerald-700">Government ID</span>
+                      <div className="flex items-center justify-between p-3 border border-[var(--border-color)] rounded-lg">
+                        <span className="text-sm text-[var(--text-secondary)]">Government ID</span>
                         <Badge className="bg-green-500">Verified</Badge>
                       </div>
-                      <div className="flex items-center justify-between p-3 border border-emerald-200 rounded-lg">
-                        <span className="text-sm text-emerald-700">Business License</span>
+                      <div className="flex items-center justify-between p-3 border border-[var(--border-color)] rounded-lg">
+                        <span className="text-sm text-[var(--text-secondary)]">Business License</span>
                         <Badge className="bg-green-500">Verified</Badge>
                       </div>
-                      <div className="flex items-center justify-between p-3 border border-emerald-200 rounded-lg">
-                        <span className="text-sm text-emerald-700">Address Proof</span>
+                      <div className="flex items-center justify-between p-3 border border-[var(--border-color)] rounded-lg">
+                        <span className="text-sm text-[var(--text-secondary)]">Address Proof</span>
                         <Badge className="bg-green-500">Verified</Badge>
                       </div>
                     </div>
@@ -257,32 +257,32 @@ export function Profile() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="pt-6 text-center">
             <Star className="w-8 h-8 text-amber-500 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-emerald-900">4.8</div>
-            <p className="text-sm text-emerald-600">Average Rating</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">4.8</div>
+            <p className="text-sm text-[var(--text-muted)]">Average Rating</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="pt-6 text-center">
             <Award className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-emerald-900">156</div>
-            <p className="text-sm text-emerald-600">Total Reviews</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">156</div>
+            <p className="text-sm text-[var(--text-muted)]">Total Reviews</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="pt-6 text-center">
             <User className="w-8 h-8 text-green-500 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-emerald-900">234</div>
-            <p className="text-sm text-emerald-600">Connections</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">234</div>
+            <p className="text-sm text-[var(--text-muted)]">Connections</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="pt-6 text-center">
             <Shield className="w-8 h-8 text-purple-500 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-emerald-900">100%</div>
-            <p className="text-sm text-emerald-600">Trust Score</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">100%</div>
+            <p className="text-sm text-[var(--text-muted)]">Trust Score</p>
           </CardContent>
         </Card>
       </div>

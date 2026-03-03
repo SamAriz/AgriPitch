@@ -19,58 +19,58 @@ export function Crops() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-emerald-900">Crop Management</h1>
-          <p className="text-emerald-600 mt-1">Monitor and track your crops</p>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Crop Management</h1>
+          <p className="text-sm text-[var(--text-muted)] mt-0.5">Monitor and track your crops</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
           <Plus className="w-4 h-4 mr-2" />
           Add Crop
         </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="pt-6 text-center">
-            <div className="text-2xl font-bold text-emerald-900">{mockCrops.length}</div>
-            <p className="text-sm text-emerald-600">Total Crops</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{mockCrops.length}</div>
+            <p className="text-sm text-[var(--text-muted)]">Total Crops</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-blue-200">
+        <Card className="bg-[var(--card)] border-blue-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-blue-700">
               {mockCrops.filter(c => c.status === 'growing').length}
             </div>
-            <p className="text-sm text-emerald-600">Growing</p>
+            <p className="text-sm text-[var(--text-muted)]">Growing</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-green-200">
+        <Card className="bg-[var(--card)] border-green-200">
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-green-700">
               {mockCrops.filter(c => c.status === 'ready').length}
             </div>
-            <p className="text-sm text-emerald-600">Ready to Harvest</p>
+            <p className="text-sm text-[var(--text-muted)]">Ready to Harvest</p>
           </CardContent>
         </Card>
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardContent className="pt-6 text-center">
-            <div className="text-2xl font-bold text-emerald-900">
+            <div className="text-2xl font-bold text-[var(--text-primary)]">
               {mockCrops.reduce((sum, c) => sum + c.area, 0).toFixed(1)}
             </div>
-            <p className="text-sm text-emerald-600">Total Hectares</p>
+            <p className="text-sm text-[var(--text-muted)]">Total Hectares</p>
           </CardContent>
         </Card>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {mockCrops.map((crop) => (
-          <Card key={crop.id} className="bg-white border-emerald-200">
+          <Card key={crop.id} className="bg-[var(--card)] border-[var(--border-color)]">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
-                  <Sprout className="w-5 h-5 text-emerald-600" />
+                  <Sprout className="w-5 h-5 text-[var(--text-muted)]" />
                   <div>
-                    <CardTitle className="text-lg text-emerald-900">{crop.name}</CardTitle>
-                    <p className="text-sm text-emerald-600">{crop.variety}</p>
+                    <CardTitle className="text-lg text-[var(--text-primary)]">{crop.name}</CardTitle>
+                    <p className="text-sm text-[var(--text-muted)]">{crop.variety}</p>
                   </div>
                 </div>
                 <Badge variant="outline" className={getStatusColor(crop.status)}>
@@ -81,16 +81,16 @@ export function Crops() {
             <CardContent className="space-y-3">
               <div className="p-3 bg-emerald-50 rounded-lg space-y-2 text-sm">
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-emerald-600" />
-                  <span className="text-emerald-700">{crop.location} • {crop.area} hectares</span>
+                  <MapPin className="w-4 h-4 text-[var(--text-muted)]" />
+                  <span className="text-[var(--text-secondary)]">{crop.location} • {crop.area} hectares</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-emerald-600" />
-                  <span className="text-emerald-700">Planted: {crop.plantingDate}</span>
+                  <Calendar className="w-4 h-4 text-[var(--text-muted)]" />
+                  <span className="text-[var(--text-secondary)]">Planted: {crop.plantingDate}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-emerald-600" />
-                  <span className="text-emerald-700">Harvest: {crop.expectedHarvest}</span>
+                  <Calendar className="w-4 h-4 text-[var(--text-muted)]" />
+                  <span className="text-[var(--text-secondary)]">Harvest: {crop.expectedHarvest}</span>
                 </div>
               </div>
 

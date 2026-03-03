@@ -14,68 +14,68 @@ export function BuyerDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-emerald-900">Buyer Dashboard</h1>
-        <p className="text-emerald-600 mt-1">Welcome back! Discover fresh produce from local farmers.</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Buyer Dashboard</h1>
+        <p className="text-sm text-[var(--text-muted)] mt-0.5">Welcome back! Discover fresh produce from local farmers.</p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Active Orders</CardTitle>
-            <ShoppingBag className="w-4 h-4 text-emerald-600" />
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Active Orders</CardTitle>
+            <ShoppingBag className="w-4 h-4 text-[var(--text-muted)]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">{activeOrders.length}</div>
-            <p className="text-xs text-emerald-600 mt-1">
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{activeOrders.length}</div>
+            <p className="text-xs text-sm text-[var(--text-muted)] mt-0.5">
               {myOrders.length} total orders
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Total Spent</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Total Spent</CardTitle>
             <Package className="w-4 h-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">${totalSpent.toFixed(2)}</div>
-            <p className="text-xs text-emerald-600 mt-1">This month</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">₱{totalSpent.toFixed(2)}</div>
+            <p className="text-xs text-sm text-[var(--text-muted)] mt-0.5">This month</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Favorite Sellers</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Favorite Sellers</CardTitle>
             <Star className="w-4 h-4 text-amber-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">5</div>
-            <p className="text-xs text-emerald-600 mt-1">In your favorites</p>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">5</div>
+            <p className="text-xs text-sm text-[var(--text-muted)] mt-0.5">In your favorites</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Savings</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Savings</CardTitle>
             <TrendingUp className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">$45.30</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">₱45.30</div>
             <p className="text-xs text-blue-600 mt-1">vs. retail prices</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Active Orders */}
-      <Card className="bg-white border-emerald-200">
+      <Card className="bg-[var(--card)] border-[var(--border-color)]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="text-emerald-900">Active Orders</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Active Orders</CardTitle>
             <CardDescription>Track your recent orders</CardDescription>
           </div>
           <Link to="/buyer/orders">
-            <Button variant="outline" size="sm" className="border-emerald-300">
+            <Button variant="outline" size="sm" className="border-[var(--border-color)]">
               View All
               <ArrowUpRight className="w-4 h-4 ml-2" />
             </Button>
@@ -87,14 +87,14 @@ export function BuyerDashboard() {
               {activeOrders.map((order) => (
                 <div key={order.id} className="flex items-center justify-between p-4 bg-emerald-50 rounded-lg">
                   <div className="flex-1">
-                    <p className="font-medium text-emerald-900">{order.productName}</p>
-                    <p className="text-sm text-emerald-600">
+                    <p className="font-medium text-[var(--text-primary)]">{order.productName}</p>
+                    <p className="text-sm text-[var(--text-muted)]">
                       {order.sellerName} • {order.quantity} units
                     </p>
                   </div>
                   <div className="text-right mr-4">
-                    <p className="font-medium text-emerald-900">${order.totalPrice.toFixed(2)}</p>
-                    <p className="text-sm text-emerald-600">{order.orderDate}</p>
+                    <p className="font-medium text-[var(--text-primary)]">₱{order.totalPrice.toFixed(2)}</p>
+                    <p className="text-sm text-[var(--text-muted)]">{order.orderDate}</p>
                   </div>
                   <Badge 
                     variant="outline"
@@ -112,9 +112,9 @@ export function BuyerDashboard() {
           ) : (
             <div className="text-center py-8">
               <ShoppingBag className="w-12 h-12 text-emerald-300 mx-auto mb-2" />
-              <p className="text-emerald-600">No active orders</p>
+              <p className="text-[var(--text-muted)]">No active orders</p>
               <Link to="/buyer/search">
-                <Button className="mt-4 bg-emerald-600 hover:bg-emerald-700">
+                <Button className="mt-4 bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
                   Browse Products
                 </Button>
               </Link>
@@ -124,14 +124,14 @@ export function BuyerDashboard() {
       </Card>
 
       {/* Recommended Products */}
-      <Card className="bg-white border-emerald-200">
+      <Card className="bg-[var(--card)] border-[var(--border-color)]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="text-emerald-900">Recommended for You</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Recommended for You</CardTitle>
             <CardDescription>Top-rated products from verified sellers</CardDescription>
           </div>
           <Link to="/buyer/search">
-            <Button variant="outline" size="sm" className="border-emerald-300">
+            <Button variant="outline" size="sm" className="border-[var(--border-color)]">
               Browse All
               <ArrowUpRight className="w-4 h-4 ml-2" />
             </Button>
@@ -141,7 +141,7 @@ export function BuyerDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {recommendedProducts.map((product) => (
               <Link key={product.id} to={`/product/${product.id}`}>
-                <div className="border border-emerald-200 rounded-lg overflow-hidden bg-white hover:shadow-lg transition-shadow cursor-pointer">
+                <div className="border border-[var(--border-color)] rounded-lg overflow-hidden bg-[var(--card)] hover:shadow-lg transition-shadow cursor-pointer">
                   <img 
                     src={product.image} 
                     alt={product.name}
@@ -149,15 +149,15 @@ export function BuyerDashboard() {
                   />
                   <div className="p-4">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-medium text-emerald-900 text-sm">{product.name}</h3>
+                      <h3 className="font-medium text-[var(--text-primary)] text-sm">{product.name}</h3>
                       <div className="flex items-center gap-1 text-xs">
                         <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                        <span className="font-medium text-emerald-900">{product.rating}</span>
+                        <span className="font-medium text-[var(--text-primary)]">{product.rating}</span>
                       </div>
                     </div>
-                    <p className="text-xs text-emerald-600 mb-2">{product.sellerName}</p>
+                    <p className="text-xs text-[var(--text-muted)] mb-2">{product.sellerName}</p>
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-emerald-700">${product.price}/{product.unit}</span>
+                      <span className="font-bold text-[var(--text-secondary)]">₱{product.price}/{product.unit}</span>
                       <Badge variant="outline" className="border-green-300 text-green-700 text-xs">
                         Available
                       </Badge>

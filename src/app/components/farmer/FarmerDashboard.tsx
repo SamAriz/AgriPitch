@@ -16,45 +16,45 @@ export function FarmerDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-emerald-900">Farmer Dashboard</h1>
-        <p className="text-emerald-600 mt-1">Welcome back! Here's your farm overview.</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Farmer Dashboard</h1>
+        <p className="text-sm text-[var(--text-muted)] mt-0.5">Welcome back! Here's your farm overview.</p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Active Products</CardTitle>
-            <Package className="w-4 h-4 text-emerald-600" />
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Active Products</CardTitle>
+            <Package className="w-4 h-4 text-[var(--text-muted)]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">{activeProducts}</div>
-            <p className="text-xs text-emerald-600 mt-1">
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{activeProducts}</div>
+            <p className="text-xs text-sm text-[var(--text-muted)] mt-0.5">
               {myProducts.length} total products
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Pending Orders</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Pending Orders</CardTitle>
             <ShoppingCart className="w-4 h-4 text-amber-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">{pendingOrders}</div>
-            <p className="text-xs text-emerald-600 mt-1">
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{pendingOrders}</div>
+            <p className="text-xs text-sm text-[var(--text-muted)] mt-0.5">
               {myOrders.length} total orders
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Total Revenue</CardTitle>
             <DollarSign className="w-4 h-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">${totalRevenue.toFixed(2)}</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">₱{totalRevenue.toFixed(2)}</div>
             <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
               +12% from last month
@@ -62,13 +62,13 @@ export function FarmerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-emerald-700">Total Views</CardTitle>
+            <CardTitle className="text-sm font-medium text-[var(--text-secondary)]">Total Views</CardTitle>
             <Eye className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-900">2,847</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">2,847</div>
             <p className="text-xs text-blue-600 mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
               +8% this week
@@ -79,9 +79,9 @@ export function FarmerDashboard() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader>
-            <CardTitle className="text-emerald-900">Market Price Trends</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Market Price Trends</CardTitle>
             <CardDescription>Average prices over the last 6 months</CardDescription>
           </CardHeader>
           <CardContent>
@@ -101,9 +101,9 @@ export function FarmerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white border-emerald-200">
+        <Card className="bg-[var(--card)] border-[var(--border-color)]">
           <CardHeader>
-            <CardTitle className="text-emerald-900">Weekly Sales</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Weekly Sales</CardTitle>
             <CardDescription>Sales performance this week</CardDescription>
           </CardHeader>
           <CardContent>
@@ -123,14 +123,14 @@ export function FarmerDashboard() {
       </div>
 
       {/* Recent Orders */}
-      <Card className="bg-white border-emerald-200">
+      <Card className="bg-[var(--card)] border-[var(--border-color)]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="text-emerald-900">Recent Orders</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Recent Orders</CardTitle>
             <CardDescription>Latest orders from your products</CardDescription>
           </div>
           <Link to="/farmer/orders">
-            <Button variant="outline" size="sm" className="border-emerald-300">
+            <Button variant="outline" size="sm" className="border-[var(--border-color)]">
               View All
               <ArrowUpRight className="w-4 h-4 ml-2" />
             </Button>
@@ -141,14 +141,14 @@ export function FarmerDashboard() {
             {myOrders.slice(0, 5).map((order) => (
               <div key={order.id} className="flex items-center justify-between p-4 bg-emerald-50 rounded-lg">
                 <div className="flex-1">
-                  <p className="font-medium text-emerald-900">{order.productName}</p>
-                  <p className="text-sm text-emerald-600">
+                  <p className="font-medium text-[var(--text-primary)]">{order.productName}</p>
+                  <p className="text-sm text-[var(--text-muted)]">
                     {order.buyerName} • {order.quantity} units
                   </p>
                 </div>
                 <div className="text-right mr-4">
-                  <p className="font-medium text-emerald-900">${order.totalPrice.toFixed(2)}</p>
-                  <p className="text-sm text-emerald-600">{order.orderDate}</p>
+                  <p className="font-medium text-[var(--text-primary)]">₱{order.totalPrice.toFixed(2)}</p>
+                  <p className="text-sm text-[var(--text-muted)]">{order.orderDate}</p>
                 </div>
                 <Badge 
                   variant={
@@ -171,14 +171,14 @@ export function FarmerDashboard() {
       </Card>
 
       {/* Current Products */}
-      <Card className="bg-white border-emerald-200">
+      <Card className="bg-[var(--card)] border-[var(--border-color)]">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="text-emerald-900">Your Products</CardTitle>
+            <CardTitle className="text-[var(--text-primary)]">Your Products</CardTitle>
             <CardDescription>Active listings on the marketplace</CardDescription>
           </div>
           <Link to="/farmer/products">
-            <Button variant="outline" size="sm" className="border-emerald-300">
+            <Button variant="outline" size="sm" className="border-[var(--border-color)]">
               Manage Products
               <ArrowUpRight className="w-4 h-4 ml-2" />
             </Button>
@@ -187,18 +187,18 @@ export function FarmerDashboard() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {myProducts.slice(0, 3).map((product) => (
-              <div key={product.id} className="border border-emerald-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition-shadow">
+              <div key={product.id} className="border border-[var(--border-color)] rounded-lg overflow-hidden bg-[var(--card)] hover:shadow-md transition-shadow">
                 <img 
                   src={product.image} 
                   alt={product.name}
                   className="w-full h-40 object-cover"
                 />
                 <div className="p-4">
-                  <h3 className="font-medium text-emerald-900">{product.name}</h3>
-                  <p className="text-sm text-emerald-600 mt-1">{product.quantity} {product.unit} available</p>
+                  <h3 className="font-medium text-[var(--text-primary)]">{product.name}</h3>
+                  <p className="text-sm text-sm text-[var(--text-muted)] mt-0.5">{product.quantity} {product.unit} available</p>
                   <div className="flex items-center justify-between mt-3">
-                    <span className="font-bold text-emerald-700">${product.price}/{product.unit}</span>
-                    <Badge variant="outline" className="border-emerald-300 text-emerald-700">
+                    <span className="font-bold text-[var(--text-secondary)]">₱{product.price}/{product.unit}</span>
+                    <Badge variant="outline" className="border-[var(--border-color)] text-[var(--text-secondary)]">
                       {product.available ? 'Active' : 'Inactive'}
                     </Badge>
                   </div>
