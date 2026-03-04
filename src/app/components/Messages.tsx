@@ -58,21 +58,21 @@ export function Messages() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-emerald-900">Messages</h1>
-        <p className="text-emerald-600 mt-1">Connect with farmers, buyers, and sellers</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Messages</h1>
+        <p className="text-sm text-[var(--text-muted)] mt-0.5">Connect with farmers, buyers, and sellers</p>
       </div>
 
-      <Card className="bg-white border-emerald-200">
+      <Card className="bg-[var(--card)] border-[var(--border-color)]">
         <CardContent className="p-0">
           <div className="grid grid-cols-1 md:grid-cols-3 h-[600px]">
             {/* Contacts List */}
-            <div className="border-r border-emerald-200">
-              <div className="p-4 border-b border-emerald-200">
+            <div className="border-r border-[var(--border-color)]">
+              <div className="p-4 border-b border-[var(--border-color)]">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-emerald-600" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[var(--text-muted)]" />
                   <Input 
                     placeholder="Search contacts..." 
-                    className="pl-10 border-emerald-300"
+                    className="pl-10 border-[var(--border-color)]"
                   />
                 </div>
               </div>
@@ -83,27 +83,27 @@ export function Messages() {
                       key={contact.id}
                       onClick={() => setSelectedContact(contact.id)}
                       className={`w-full p-4 text-left hover:bg-emerald-50 transition-colors ${
-                        selectedContact === contact.id ? 'bg-emerald-100' : ''
+                        selectedContact === contact.id ? 'bg-[var(--pale-green)]' : ''
                       }`}
                     >
                       <div className="flex items-start gap-3">
                         <Avatar>
-                          <AvatarFallback className="bg-emerald-200 text-emerald-900">
+                          <AvatarFallback className="bg-emerald-200 text-[var(--text-primary)]">
                             {contact.name.charAt(0)}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-1">
-                            <h4 className="font-medium text-emerald-900 truncate">
+                            <h4 className="font-medium text-[var(--text-primary)] truncate">
                               {contact.name}
                             </h4>
                             {contact.unread > 0 && (
-                              <Badge className="bg-emerald-600 h-5 min-w-5 flex items-center justify-center">
+                              <Badge className="bg-[var(--primary-green)] h-5 min-w-5 flex items-center justify-center">
                                 {contact.unread}
                               </Badge>
                             )}
                           </div>
-                          <p className="text-sm text-emerald-600 truncate">
+                          <p className="text-sm text-[var(--text-muted)] truncate">
                             {contact.lastMessage?.content}
                           </p>
                           <p className="text-xs text-emerald-500 mt-1">
@@ -122,18 +122,18 @@ export function Messages() {
               {selectedContact ? (
                 <>
                   {/* Chat Header */}
-                  <div className="p-4 border-b border-emerald-200 bg-emerald-50">
+                  <div className="p-4 border-b border-[var(--border-color)] bg-emerald-50">
                     <div className="flex items-center gap-3">
                       <Avatar>
-                        <AvatarFallback className="bg-emerald-200 text-emerald-900">
+                        <AvatarFallback className="bg-emerald-200 text-[var(--text-primary)]">
                           {contacts.find(c => c.id === selectedContact)?.name.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <h3 className="font-medium text-emerald-900">
+                        <h3 className="font-medium text-[var(--text-primary)]">
                           {contacts.find(c => c.id === selectedContact)?.name}
                         </h3>
-                        <p className="text-sm text-emerald-600">Active now</p>
+                        <p className="text-sm text-[var(--text-muted)]">Active now</p>
                       </div>
                     </div>
                   </div>
@@ -149,13 +149,13 @@ export function Messages() {
                           <div
                             className={`max-w-[70%] rounded-lg p-3 ${
                               message.senderId === 'b1'
-                                ? 'bg-emerald-600 text-white'
-                                : 'bg-emerald-100 text-emerald-900'
+                                ? 'bg-[var(--primary-green)] text-white'
+                                : 'bg-[var(--pale-green)] text-[var(--text-primary)]'
                             }`}
                           >
                             <p className="text-sm">{message.content}</p>
                             <p className={`text-xs mt-1 ${
-                              message.senderId === 'b1' ? 'text-emerald-100' : 'text-emerald-600'
+                              message.senderId === 'b1' ? 'text-emerald-100' : 'text-[var(--text-muted)]'
                             }`}>
                               {formatTime(message.timestamp)}
                             </p>
@@ -166,25 +166,25 @@ export function Messages() {
                   </ScrollArea>
 
                   {/* Message Input */}
-                  <form onSubmit={handleSendMessage} className="p-4 border-t border-emerald-200">
+                  <form onSubmit={handleSendMessage} className="p-4 border-t border-[var(--border-color)]">
                     <div className="flex gap-2">
                       <Input
                         value={messageText}
                         onChange={(e) => setMessageText(e.target.value)}
                         placeholder="Type a message..."
-                        className="flex-1 border-emerald-300"
+                        className="flex-1 border-[var(--border-color)]"
                       />
-                      <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
+                      <Button type="submit" className="bg-[var(--primary-green)] hover:bg-[var(--medium-green)]">
                         <Send className="w-4 h-4" />
                       </Button>
                     </div>
                   </form>
                 </>
               ) : (
-                <div className="flex items-center justify-center h-full text-emerald-600">
+                <div className="flex items-center justify-center h-full text-[var(--text-muted)]">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Search className="w-8 h-8 text-emerald-600" />
+                    <div className="w-16 h-16 bg-[var(--pale-green)] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Search className="w-8 h-8 text-[var(--text-muted)]" />
                     </div>
                     <p>Select a contact to start messaging</p>
                   </div>
